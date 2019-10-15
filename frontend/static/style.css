@@ -1,0 +1,8 @@
+.banner {
+	background-color: black;
+	box-sizing: border-box;
+	color: white;
+	font-size: 36px;
+	height: 75px;
+	padding: 10px;
+}
