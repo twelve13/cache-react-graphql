@@ -1,8 +1,33 @@
-.banner {
-	background-color: black;
-	box-sizing: border-box;
-	color: white;
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+.header {
+	border-bottom: solid 5px black;
+	height: 100px;
+}
+
+.header a {
+	text-decoration: none;
+}
+
+.header a:visited {
+	color: black;
+}
+
+.logo {
 	font-size: 36px;
-	height: 75px;
-	padding: 10px;
+	font-weight: 600;
+}
+
+.accounts-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.account {
+	border: solid 2px black;
+	border-radius: 15px;
+	height: 200px;
+	width: 200px;
 }
