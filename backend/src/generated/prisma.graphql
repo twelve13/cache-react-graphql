@@ -1,5 +1,402 @@
 # source: https://us1.prisma.sh/caroline-chen/cache-app/dev
-# timestamp: Tue Oct 15 2019 14:55:55 GMT-0400 (EDT)
+# timestamp: Tue Oct 29 2019 14:29:00 GMT-0400 (EDT)
+
+type Account implements Node {
+  id: ID!
+  name: String!
+  goal_amount: Int
+  notes: String
+  current_amount: Int!
+  status: Boolean
+  withdrawals: String
+  depostits: String
+}
+
+"""A connection to a list of items."""
+type AccountConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AccountEdge]!
+  aggregate: AggregateAccount!
+}
+
+input AccountCreateInput {
+  id: ID
+  name: String!
+  goal_amount: Int
+  notes: String
+  current_amount: Int!
+  status: Boolean
+  withdrawals: String
+  depostits: String
+}
+
+"""An edge in a connection."""
+type AccountEdge {
+  """The item at the end of the edge."""
+  node: Account!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AccountOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  goal_amount_ASC
+  goal_amount_DESC
+  notes_ASC
+  notes_DESC
+  current_amount_ASC
+  current_amount_DESC
+  status_ASC
+  status_DESC
+  withdrawals_ASC
+  withdrawals_DESC
+  depostits_ASC
+  depostits_DESC
+}
+
+type AccountPreviousValues {
+  id: ID!
+  name: String!
+  goal_amount: Int
+  notes: String
+  current_amount: Int!
+  status: Boolean
+  withdrawals: String
+  depostits: String
+}
+
+type AccountSubscriptionPayload {
+  mutation: MutationType!
+  node: Account
+  updatedFields: [String!]
+  previousValues: AccountPreviousValues
+}
+
+input AccountSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AccountSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AccountSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AccountSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AccountWhereInput
+}
+
+input AccountUpdateInput {
+  name: String
+  goal_amount: Int
+  notes: String
+  current_amount: Int
+  status: Boolean
+  withdrawals: String
+  depostits: String
+}
+
+input AccountUpdateManyMutationInput {
+  name: String
+  goal_amount: Int
+  notes: String
+  current_amount: Int
+  status: Boolean
+  withdrawals: String
+  depostits: String
+}
+
+input AccountWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AccountWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AccountWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AccountWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  goal_amount: Int
+
+  """All values that are not equal to given value."""
+  goal_amount_not: Int
+
+  """All values that are contained in given list."""
+  goal_amount_in: [Int!]
+
+  """All values that are not contained in given list."""
+  goal_amount_not_in: [Int!]
+
+  """All values less than the given value."""
+  goal_amount_lt: Int
+
+  """All values less than or equal the given value."""
+  goal_amount_lte: Int
+
+  """All values greater than the given value."""
+  goal_amount_gt: Int
+
+  """All values greater than or equal the given value."""
+  goal_amount_gte: Int
+  notes: String
+
+  """All values that are not equal to given value."""
+  notes_not: String
+
+  """All values that are contained in given list."""
+  notes_in: [String!]
+
+  """All values that are not contained in given list."""
+  notes_not_in: [String!]
+
+  """All values less than the given value."""
+  notes_lt: String
+
+  """All values less than or equal the given value."""
+  notes_lte: String
+
+  """All values greater than the given value."""
+  notes_gt: String
+
+  """All values greater than or equal the given value."""
+  notes_gte: String
+
+  """All values containing the given string."""
+  notes_contains: String
+
+  """All values not containing the given string."""
+  notes_not_contains: String
+
+  """All values starting with the given string."""
+  notes_starts_with: String
+
+  """All values not starting with the given string."""
+  notes_not_starts_with: String
+
+  """All values ending with the given string."""
+  notes_ends_with: String
+
+  """All values not ending with the given string."""
+  notes_not_ends_with: String
+  current_amount: Int
+
+  """All values that are not equal to given value."""
+  current_amount_not: Int
+
+  """All values that are contained in given list."""
+  current_amount_in: [Int!]
+
+  """All values that are not contained in given list."""
+  current_amount_not_in: [Int!]
+
+  """All values less than the given value."""
+  current_amount_lt: Int
+
+  """All values less than or equal the given value."""
+  current_amount_lte: Int
+
+  """All values greater than the given value."""
+  current_amount_gt: Int
+
+  """All values greater than or equal the given value."""
+  current_amount_gte: Int
+  status: Boolean
+
+  """All values that are not equal to given value."""
+  status_not: Boolean
+  withdrawals: String
+
+  """All values that are not equal to given value."""
+  withdrawals_not: String
+
+  """All values that are contained in given list."""
+  withdrawals_in: [String!]
+
+  """All values that are not contained in given list."""
+  withdrawals_not_in: [String!]
+
+  """All values less than the given value."""
+  withdrawals_lt: String
+
+  """All values less than or equal the given value."""
+  withdrawals_lte: String
+
+  """All values greater than the given value."""
+  withdrawals_gt: String
+
+  """All values greater than or equal the given value."""
+  withdrawals_gte: String
+
+  """All values containing the given string."""
+  withdrawals_contains: String
+
+  """All values not containing the given string."""
+  withdrawals_not_contains: String
+
+  """All values starting with the given string."""
+  withdrawals_starts_with: String
+
+  """All values not starting with the given string."""
+  withdrawals_not_starts_with: String
+
+  """All values ending with the given string."""
+  withdrawals_ends_with: String
+
+  """All values not ending with the given string."""
+  withdrawals_not_ends_with: String
+  depostits: String
+
+  """All values that are not equal to given value."""
+  depostits_not: String
+
+  """All values that are contained in given list."""
+  depostits_in: [String!]
+
+  """All values that are not contained in given list."""
+  depostits_not_in: [String!]
+
+  """All values less than the given value."""
+  depostits_lt: String
+
+  """All values less than or equal the given value."""
+  depostits_lte: String
+
+  """All values greater than the given value."""
+  depostits_gt: String
+
+  """All values greater than or equal the given value."""
+  depostits_gte: String
+
+  """All values containing the given string."""
+  depostits_contains: String
+
+  """All values not containing the given string."""
+  depostits_not_contains: String
+
+  """All values starting with the given string."""
+  depostits_starts_with: String
+
+  """All values not starting with the given string."""
+  depostits_not_starts_with: String
+
+  """All values ending with the given string."""
+  depostits_ends_with: String
+
+  """All values not ending with the given string."""
+  depostits_not_ends_with: String
+}
+
+input AccountWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAccount {
+  count: Int!
+}
 
 type AggregateUser {
   count: Int!
@@ -18,11 +415,17 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
+  createAccount(data: AccountCreateInput!): Account!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   deleteUser(where: UserWhereUniqueInput!): User
+  deleteAccount(where: AccountWhereUniqueInput!): Account
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertAccount(where: AccountWhereUniqueInput!, create: AccountCreateInput!, update: AccountUpdateInput!): Account!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyAccounts(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyAccounts(where: AccountWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -54,8 +457,11 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account]!
   user(where: UserWhereUniqueInput!): User
+  account(where: AccountWhereUniqueInput!): Account
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  accountsConnection(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AccountConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -66,6 +472,7 @@ type Query {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  account(where: AccountSubscriptionWhereInput): AccountSubscriptionPayload
 }
 
 type User implements Node {
