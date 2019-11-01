@@ -31,3 +31,31 @@ body {
 	height: 200px;
 	width: 200px;
 }
+
+
+
+
+
+
+/*adapted from Wes Bos for form errors*/
+fieldset[disabled] {
+	opacity: 0.5;
+}
+
+fieldset::before {
+	height: 10px;
+	content: '';
+	display: block;
+	background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
+}
+
+fieldset[aria-busy='true']::before {
+	background-size: 50% auto;
+	animation: form-loading 0.5s linear infinite;
+}
+
+
+@keyframes form-loading {
+	0% {background-position: 0 0;}
+	100% {background-position: 100% 100%;}
+}

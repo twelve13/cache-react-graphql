@@ -43,3 +43,4 @@ class Accounts extends React.Component {
 }
 
 export default Accounts;
+export { ALL_ACCOUNTS_QUERY };
