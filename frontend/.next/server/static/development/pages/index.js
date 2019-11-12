@@ -365,6 +365,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _ErrorMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ErrorMessage */ "./components/ErrorMessage.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
 
 var _jsxFileName = "/Users/carolinechen/projects/cache-react-graphql/frontend/components/CreateAccount.js";
 
@@ -408,6 +410,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
  //Wes created this ErrorMessage component to handle errors
+
 
  //write query for the mutation
 //this should match schema.graphql in backend
@@ -467,7 +470,7 @@ function (_React$Component) {
         variables: this.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 50
         },
         __self: this
       }, function (createAccount, _ref) {
@@ -477,13 +480,13 @@ function (_React$Component) {
           className: "create-account",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 51
+            lineNumber: 52
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 52
+            lineNumber: 53
           },
           __self: this
         }, "Add Account"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
@@ -506,8 +509,15 @@ function (_React$Component) {
 
                     case 3:
                       response = _context.sent;
+                      //take user to the account's individual page
+                      next_router__WEBPACK_IMPORTED_MODULE_5___default.a.push({
+                        pathname: '/account',
+                        query: {
+                          id: response.data.createAccount.id
+                        }
+                      });
 
-                    case 4:
+                    case 5:
                     case "end":
                       return _context.stop();
                   }
@@ -521,14 +531,14 @@ function (_React$Component) {
           }(),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 53
+            lineNumber: 54
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ErrorMessage__WEBPACK_IMPORTED_MODULE_4__["default"], {
           error: error,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 61
+            lineNumber: 67
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("fieldset", {
@@ -536,14 +546,14 @@ function (_React$Component) {
           "aria-busy": loading,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 62
+            lineNumber: 68
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "accountName",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 63
+            lineNumber: 69
           },
           __self: this
         }, "Name", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -556,14 +566,14 @@ function (_React$Component) {
           required: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 64
+            lineNumber: 70
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "name",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 74
+            lineNumber: 80
           },
           __self: this
         }, "Current Amount", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -576,14 +586,14 @@ function (_React$Component) {
           required: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 75
+            lineNumber: 81
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "name",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 91
           },
           __self: this
         }, "Goal Amount", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -596,14 +606,14 @@ function (_React$Component) {
           required: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 86
+            lineNumber: 92
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "name",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 96
+            lineNumber: 102
           },
           __self: this
         }, "Notes", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -615,14 +625,14 @@ function (_React$Component) {
           onChange: _this2.handleChange,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 97
+            lineNumber: 103
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           type: "submit",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 106
+            lineNumber: 112
           },
           __self: this
         }, "Submit"))));
@@ -747,6 +757,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Accounts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Accounts */ "./components/Accounts.js");
 /* harmony import */ var _components_CreateAccount__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/CreateAccount */ "./components/CreateAccount.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "next/link");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/carolinechen/projects/cache-react-graphql/frontend/pages/index.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -771,6 +783,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Dashboard =
 /*#__PURE__*/
 function (_React$Component) {
@@ -788,22 +801,29 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 8
+          lineNumber: 9
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Accounts__WEBPACK_IMPORTED_MODULE_1__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 9
-        },
-        __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CreateAccount__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        __source: {
-          fileName: _jsxFileName,
           lineNumber: 10
         },
         __self: this
-      }));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        href: "createAccount",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 11
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12
+        },
+        __self: this
+      }, "Create New Account")));
     }
   }]);
 
@@ -856,6 +876,17 @@ module.exports = require("graphql-tag");
 /***/ (function(module, exports) {
 
 module.exports = require("next/link");
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
 
 /***/ }),
 

@@ -4,7 +4,6 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 //Wes created this ErrorMessage component to handle errors
 import Error from './ErrorMessage';
-import Router from 'next/router';
 
 //write query for the mutation
 //this should match schema.graphql in backend
@@ -12,8 +11,8 @@ import Router from 'next/router';
 //then will be available via variables with the same names
 //return the id
 
-const CREATE_ACCOUNT_MUTATION = gql`
-	mutation CREATE_ACCOUNT_MUTATION(
+const UPDATE_ACCOUNT_MUTATION = gql`
+	mutation UPDATE_ACCOUNT_MUTATION(
 		$name: String!
 		$goal_amount: Int!
 		$notes: String
@@ -30,7 +29,7 @@ const CREATE_ACCOUNT_MUTATION = gql`
 	}
 `;
 
-class CreateAccount extends React.Component {
+class UpdateAccount extends React.Component {
 	state = {
 		name: '',
 		current_amount: 0,
@@ -47,21 +46,16 @@ class CreateAccount extends React.Component {
 
 	render() {
 		return (
-				<Mutation mutation={CREATE_ACCOUNT_MUTATION} variables={this.state}> 
+				<Mutation mutation={UPDATE_ACCOUNT_MUTATION} variables={this.state}> 
 				{(createAccount, {loading, error}) => (
 			    	<div className="create-account">
         				<div>Add Account</div>
         				<form 
         					onSubmit={async event => {
         						//stop the form from submitting
-								    event.preventDefault();
-								    //call the mutation
-								    const response = await createAccount();
-                    //take user to the account's individual page
-                    Router.push({
-                      pathname: '/account',
-                      query: { id: response.data.createAccount.id }
-                    })
+								event.preventDefault();
+								//call the mutation
+								const response = await createAccount();
 							}}
 						>
         					<Error error={error}/>
@@ -119,5 +113,5 @@ class CreateAccount extends React.Component {
 	}
 }
 
-export default CreateAccount;
-export { CREATE_ACCOUNT_MUTATION };
+export default UpdateAccount;
+export { UPDATE_ACCOUNT_MUTATION };
