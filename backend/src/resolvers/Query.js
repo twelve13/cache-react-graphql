@@ -1,7 +1,7 @@
 const { forwardTo } = require('prisma-binding');
 
 const Query = {
-	items: forwardto('db'),
+	accounts: forwardTo('db'),
 	// forward to removes need for this code
 
 	//  async accounts(parent, args, ctx, info) {
