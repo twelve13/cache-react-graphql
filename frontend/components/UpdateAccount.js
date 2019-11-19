@@ -1,6 +1,6 @@
 import React from 'react';
 //to push data to database
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 //Wes created this ErrorMessage component to handle errors
 import Error from './ErrorMessage';
@@ -11,31 +11,45 @@ import Error from './ErrorMessage';
 //then will be available via variables with the same names
 //return the id
 
+const SINGLE_ACCOUNT_QUERY = gql`
+  query SINGLE_ACCOUNT_QUERY($id: ID!) {
+    account(where: { id: $id }) {
+      id
+      name
+      current_amount
+      goal_amount
+      notes
+    }
+  }
+`
+
 const UPDATE_ACCOUNT_MUTATION = gql`
 	mutation UPDATE_ACCOUNT_MUTATION(
-		$name: String!
-		$goal_amount: Int!
+    $id: ID!
+		$name: String
+		$goal_amount: Int
 		$notes: String
-		$current_amount: Int!
+		$current_amount: Int
 	) {
-		createAccount(
+		updateAccount(
+      id: $id
 			name: $name
 			goal_amount: $goal_amount
 			notes: $notes
 			current_amount: $current_amount
 		) {
 			id
+      name
+      goal_amount
+      notes
+      current_amount
 		}
 	}
 `;
 
 class UpdateAccount extends React.Component {
 	state = {
-		name: '',
-		current_amount: 0,
-		goal_amount: 0,
-		notes: '',
-		status: true
+
 	}
 	handleChange = (event) => {
 		const { name, type, value } = event.target;
@@ -43,21 +57,36 @@ class UpdateAccount extends React.Component {
 		const parsedVal = type === 'number' ? parseInt(value) : value;
 		this.setState({ [name]: parsedVal });
 	}
+  updateAccount = async (event, updateAccountMutation) => {
+    event.preventDefault();
+    console.log('updating item, heres the state')
+    //state only reflects the fields that are changed
+    console.log(this.state);
+    const response = await updateAccountMutation({
+      variables: {
+        id: this.props.id,
+        ...this.state,
+      }
+    });
+    console.log("updated")
+  }
 
 	render() {
 		return (
+      <Query query={SINGLE_ACCOUNT_QUERY} variables={{
+        id: this.props.id
+      }}>
+        {({data, loading}) => {
+          if(loading) return <p>Loading...</p>;
+          //if no or invalid id
+          if(!data.account) return <p>No Account Found</p>;
+      return (
+        //next the mutation inside the query
 				<Mutation mutation={UPDATE_ACCOUNT_MUTATION} variables={this.state}> 
-				{(createAccount, {loading, error}) => (
+				{(updateAccount, {loading, error}) => (
 			    	<div className="create-account">
         				<div>Add Account</div>
-        				<form 
-        					onSubmit={async event => {
-        						//stop the form from submitting
-								event.preventDefault();
-								//call the mutation
-								const response = await createAccount();
-							}}
-						>
+        				<form onSubmit={event => this.updateAccount(event, updateAccount)}>
         					<Error error={error}/>
         					<fieldset disabled={loading} aria-busy={loading}>
         						<label htmlFor="accountName">Name
@@ -66,7 +95,7 @@ class UpdateAccount extends React.Component {
           								id="name" 
           								name="name" 
           								placeholder="Account Name" 
-          								value={this.state.name} 
+          								defaultValue={data.account.name} 
           								onChange={this.handleChange}
           								required 
           							/>
@@ -77,7 +106,7 @@ class UpdateAccount extends React.Component {
           								id="current_amount" 
           								name="current_amount" 
           								placeholder="Current Amount" 
-          								value={this.state.current_amount} 
+          								defaultValue={data.account.current_amount} 
           								onChange={this.handleChange}
           								required 
           							/>
@@ -88,7 +117,7 @@ class UpdateAccount extends React.Component {
           								id="goal_amount" 
           								name="goal_amount" 
           								placeholder="Goal Amount" 
-          								value={this.state.goal_mount} 
+          								defaultValue={data.account.goal_amount} 
           								onChange={this.handleChange}
           								required 
           							/>
@@ -99,16 +128,19 @@ class UpdateAccount extends React.Component {
           								id="notes" 
           								name="notes" 
           								placeholder="Notes" 
-          								value={this.state.notes}
+          								defaultValue={data.account.notes}
           								onChange={this.handleChange} 
           							/>
           						</label>
-          						<button type="submit">Submit</button>
+          						<button type="submit">Sav{loading ? 'ing' : 'e'} Changes</button>
           					</fieldset>
         				</form>
       				</div>
       				)}
       			</Mutation>
+                      )
+        }}
+      </Query>
 		);
 	}
 }

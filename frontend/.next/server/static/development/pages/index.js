@@ -192,7 +192,25 @@ function (_React$Component) {
           lineNumber: 22
         },
         __self: this
-      }, "Notes: ", account.notes));
+      }, "Notes: ", account.notes), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: {
+          pathname: 'updateAccount',
+          query: {
+            id: account.id
+          }
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 23
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 28
+        },
+        __self: this
+      }, "Edit")));
     }
   }]);
 

@@ -20,6 +20,13 @@ class Account extends React.Component {
 				<p>Current Amount: {account.current_amount}</p>
 				<p>Goal Amount: {account.goal_amount}</p>
 				<p>Notes: {account.notes}</p>
+				<Link href={{
+					pathname: 'updateAccount',
+					query: { id: account.id },
+				}}
+				>
+					<a>Edit</a>
+				</Link>
 			</div>
 		)
 	}
