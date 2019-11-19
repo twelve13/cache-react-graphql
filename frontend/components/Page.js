@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
 import Meta from './Meta';
 
-class Page extends Component {
+class Page extends React.Component {
 	render() {
 		return (
 			<div>

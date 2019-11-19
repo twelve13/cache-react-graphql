@@ -19,6 +19,7 @@ class CacheApp extends App {
 		return { pageProps };
 	}
 	render() {
+		console.log(this.props);
 		const { Component } = this.props;
 
 		return (
