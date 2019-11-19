@@ -28,6 +28,13 @@ const Mutations = {
 			info
 		);
 	},
+	async deleteAccount(parent, args, ctx, info) {
+		const where = { id: args.id };
+		//1. find the account
+		const account = await ctx.db.query.account({ where }, `{ id name}`);
+		//2. delete it
+		return ctx.db.mutation.deleteAccount({ where }, info);
+	}
 };
 
 module.exports = Mutations;
