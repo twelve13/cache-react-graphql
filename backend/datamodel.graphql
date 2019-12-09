@@ -1,8 +1,22 @@
+enum Permission {
+	ADMIN
+	USER
+	ACCOUNTCREATE
+	ACCOUNTUPDATE
+	ACCOUNTDELETE
+	PERMISSIONUPDATE
+}
+
 type User {
   id: ID! @id
   name: String!
   current_funds: Int
   source: String
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission] @scalarList(strategy: RELATION)
 }
 
 type Account {

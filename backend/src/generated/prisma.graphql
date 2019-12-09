@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/caroline-chen/cache-app/dev
-# timestamp: Tue Oct 29 2019 14:29:00 GMT-0400 (EDT)
+# timestamp: Mon Dec 09 2019 15:44:38 GMT-0500 (EST)
 
 type Account implements Node {
   id: ID!
@@ -8,8 +8,6 @@ type Account implements Node {
   notes: String
   current_amount: Int!
   status: Boolean
-  withdrawals: String
-  depostits: String
 }
 
 """A connection to a list of items."""
@@ -29,8 +27,6 @@ input AccountCreateInput {
   notes: String
   current_amount: Int!
   status: Boolean
-  withdrawals: String
-  depostits: String
 }
 
 """An edge in a connection."""
@@ -55,10 +51,6 @@ enum AccountOrderByInput {
   current_amount_DESC
   status_ASC
   status_DESC
-  withdrawals_ASC
-  withdrawals_DESC
-  depostits_ASC
-  depostits_DESC
 }
 
 type AccountPreviousValues {
@@ -68,8 +60,6 @@ type AccountPreviousValues {
   notes: String
   current_amount: Int!
   status: Boolean
-  withdrawals: String
-  depostits: String
 }
 
 type AccountSubscriptionPayload {
@@ -117,8 +107,6 @@ input AccountUpdateInput {
   notes: String
   current_amount: Int
   status: Boolean
-  withdrawals: String
-  depostits: String
 }
 
 input AccountUpdateManyMutationInput {
@@ -127,8 +115,6 @@ input AccountUpdateManyMutationInput {
   notes: String
   current_amount: Int
   status: Boolean
-  withdrawals: String
-  depostits: String
 }
 
 input AccountWhereInput {
@@ -308,86 +294,6 @@ input AccountWhereInput {
 
   """All values that are not equal to given value."""
   status_not: Boolean
-  withdrawals: String
-
-  """All values that are not equal to given value."""
-  withdrawals_not: String
-
-  """All values that are contained in given list."""
-  withdrawals_in: [String!]
-
-  """All values that are not contained in given list."""
-  withdrawals_not_in: [String!]
-
-  """All values less than the given value."""
-  withdrawals_lt: String
-
-  """All values less than or equal the given value."""
-  withdrawals_lte: String
-
-  """All values greater than the given value."""
-  withdrawals_gt: String
-
-  """All values greater than or equal the given value."""
-  withdrawals_gte: String
-
-  """All values containing the given string."""
-  withdrawals_contains: String
-
-  """All values not containing the given string."""
-  withdrawals_not_contains: String
-
-  """All values starting with the given string."""
-  withdrawals_starts_with: String
-
-  """All values not starting with the given string."""
-  withdrawals_not_starts_with: String
-
-  """All values ending with the given string."""
-  withdrawals_ends_with: String
-
-  """All values not ending with the given string."""
-  withdrawals_not_ends_with: String
-  depostits: String
-
-  """All values that are not equal to given value."""
-  depostits_not: String
-
-  """All values that are contained in given list."""
-  depostits_in: [String!]
-
-  """All values that are not contained in given list."""
-  depostits_not_in: [String!]
-
-  """All values less than the given value."""
-  depostits_lt: String
-
-  """All values less than or equal the given value."""
-  depostits_lte: String
-
-  """All values greater than the given value."""
-  depostits_gt: String
-
-  """All values greater than or equal the given value."""
-  depostits_gte: String
-
-  """All values containing the given string."""
-  depostits_contains: String
-
-  """All values not containing the given string."""
-  depostits_not_contains: String
-
-  """All values starting with the given string."""
-  depostits_starts_with: String
-
-  """All values not starting with the given string."""
-  depostits_not_starts_with: String
-
-  """All values ending with the given string."""
-  depostits_ends_with: String
-
-  """All values not ending with the given string."""
-  depostits_not_ends_with: String
 }
 
 input AccountWhereUniqueInput {
@@ -455,6 +361,15 @@ type PageInfo {
   endCursor: String
 }
 
+enum Permission {
+  ADMIN
+  USER
+  ACCOUNTCREATE
+  ACCOUNTUPDATE
+  ACCOUNTDELETE
+  PERMISSIONUPDATE
+}
+
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   accounts(where: AccountWhereInput, orderBy: AccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Account]!
@@ -480,6 +395,11 @@ type User implements Node {
   name: String!
   current_funds: Int
   source: String
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
 }
 
 """A connection to a list of items."""
@@ -497,6 +417,15 @@ input UserCreateInput {
   name: String!
   current_funds: Int
   source: String
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
 }
 
 """An edge in a connection."""
@@ -517,6 +446,14 @@ enum UserOrderByInput {
   current_funds_DESC
   source_ASC
   source_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
 }
 
 type UserPreviousValues {
@@ -524,6 +461,11 @@ type UserPreviousValues {
   name: String!
   current_funds: Int
   source: String
+  email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
 }
 
 type UserSubscriptionPayload {
@@ -569,12 +511,26 @@ input UserUpdateInput {
   name: String
   current_funds: Int
   source: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
   current_funds: Int
   source: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
 }
 
 input UserWhereInput {
@@ -728,8 +684,151 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   source_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  resetToken: String
+
+  """All values that are not equal to given value."""
+  resetToken_not: String
+
+  """All values that are contained in given list."""
+  resetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  resetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  resetToken_lt: String
+
+  """All values less than or equal the given value."""
+  resetToken_lte: String
+
+  """All values greater than the given value."""
+  resetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  resetToken_gte: String
+
+  """All values containing the given string."""
+  resetToken_contains: String
+
+  """All values not containing the given string."""
+  resetToken_not_contains: String
+
+  """All values starting with the given string."""
+  resetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  resetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  resetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
 }
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }
