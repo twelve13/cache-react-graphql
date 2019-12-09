@@ -11,11 +11,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/index": [
+    "/account": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/summaries": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
