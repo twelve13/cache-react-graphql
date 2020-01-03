@@ -41,7 +41,7 @@ const Mutations = {
 		//lowercase their email
 		args.email = args.email.toLowerCase();
 		//hash their password
-		//second argument is a salt, makes hash unique across websites
+		//second argument is a salt, makes hash unique across websites, salt length of 10
 		const password = await bcrypt.hash(args.password, 10);
 		//create the user in the database
 		const user = await ctx.db.mutation.createUser({
@@ -51,6 +51,7 @@ const Mutations = {
 				//name: args.name,
 				//email: args.email,
 				//password: args.password
+				//then overwrite the password
 				password: password,
 				permissions: { set: ['USER'] }	
 			}

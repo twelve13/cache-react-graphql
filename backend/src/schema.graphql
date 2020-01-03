@@ -10,4 +10,6 @@ type Mutation {
 type Query {
 	accounts: [Account]!
 	account(where: AccountWhereUniqueInput!): Account
+	accountsConnection(where: AccountWhereInput): AccountConnection!
+	me: User
 }
