@@ -67,7 +67,7 @@ class Signin extends React.Component {
 										onChange={this.saveToState}
 									/>
 								</label>
-								<button type="submit">Sign Up!</button>
+								<button type="submit">Sign In!</button>
 							</fieldset>
 						</form>
 					)

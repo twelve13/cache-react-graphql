@@ -5,7 +5,6 @@ const SignupPage = props => (
 	<div className="signup-grid">
 		<Signup />
 		<Signin />
-		<Signup />
 	</div>
 );
 
