@@ -10,10 +10,10 @@ const Query = {
 			return null;
 		}
 		return ctx.db.query.user({
-			where: { id: ctx.request.userId}
+			where: { id: ctx.request.userId }
 		}, info);
 	}
-	// forward to removes need for this code
+	// forwardTo removes need for this code
 
 	//  async accounts(parent, args, ctx, info) {
 	// 	console.log("Getting accounts")

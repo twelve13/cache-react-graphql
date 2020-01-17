@@ -5,6 +5,7 @@ type Mutation {
 	updateAccount(id: ID!, name: String, goal_amount: Int, notes: String, current_amount: Int): Account!
 	deleteAccount(id: ID!): Account
 	signup(email: String!, password: String!, name: String!): User!
+	signin(email: String!, password: String!): User!
 }
 
 type Query {
