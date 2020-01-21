@@ -26,4 +26,5 @@ type Account {
 	notes: String
 	current_amount: Int!
 	status: Boolean
+	user: User!
 }

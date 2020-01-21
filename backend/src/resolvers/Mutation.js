@@ -4,10 +4,19 @@ const jwt = require('jsonwebtoken');
 
 const Mutations = {
 	async createAccount(parent, args, ctx, info) {
-		//TODO: check if they are logged in
+		//check if they are logged in
+		if(!ctx.request.userId) {
+			throw new Error('You must be logged in to do that!');
+		}
 		//ctx.db is how we access the database
 		const account = await ctx.db.mutation.createAccount({
 			data: {
+				//This is how to create a relationship between the Account and the User
+				user: {
+					connect: {
+						id: ctx.request.userId
+					}
+				},
 				...args
 			}
 		}, info);
