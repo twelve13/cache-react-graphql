@@ -11,15 +11,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/index": [
+    "/createAccount": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/signup": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/": [
+    "/account": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
