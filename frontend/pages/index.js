@@ -1,12 +1,15 @@
 import Accounts from '../components/Accounts';
 import Link from 'next/link';
+import PleaseSignIn from '../components/PleaseSignIn';
 
 const Dashboard = props => (
 	<div>
-		<Accounts />
-		<Link href="createAccount">
-		<a>Create New Account</a>
-		</Link>
+		<PleaseSignIn>
+			<Accounts />
+			<Link href="createAccount">
+			<a>Create New Account</a>
+			</Link>
+		</PleaseSignIn>
 	</div>
 )
 
