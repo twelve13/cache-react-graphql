@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 //Wes created this ErrorMessage component to handle errors
 import Error from './ErrorMessage';
 import Router from 'next/router';
+import { ALL_ACCOUNTS_QUERY } from './Accounts';
 
 //write query for the mutation
 //this should match schema.graphql in backend
@@ -47,7 +48,7 @@ class CreateAccount extends React.Component {
 
 	render() {
 		return (
-				<Mutation mutation={CREATE_ACCOUNT_MUTATION} variables={this.state}> 
+				<Mutation mutation={CREATE_ACCOUNT_MUTATION} variables={this.state} refetchQueries={[{ query: ALL_ACCOUNTS_QUERY }]}> 
 				{(createAccount, {loading, error}) => (
 			    	<div className="create-account">
         				<div>Add Account</div>
@@ -59,8 +60,8 @@ class CreateAccount extends React.Component {
 								    const response = await createAccount();
                     //take user to the account's individual page
                     Router.push({
-                      pathname: '/account',
-                      query: { id: response.data.createAccount.id }
+                      pathname: '/',
+                 
                     })
 							}}
 						>
